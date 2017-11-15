@@ -15,8 +15,8 @@ In this project, I will explore the ability of convolutional neural networks to 
 - [Generating class labels](#classlabels)
 ---
 
-
-## Project Motivation {#project-motivation}
+<a id='project-motivation'></a>
+## Project Motivation 
 
 
 
