@@ -33,7 +33,7 @@ Aside from the music industry, there could be significant benefits to be had wit
 ## Workflow of this Repository.
 
 This repository consists of a few notebooks (found in the [notebooks](/Notebooks) folder) and models (found in the [models](/Models) folder). 
-![](/Images/notebookworkflow.pdf)
+![](/Images/notebookworkflow.jpg)
 This is the general workflow of the project.
 
 
