@@ -9,8 +9,7 @@ In this project, I will explore the ability of convolutional neural networks to 
 
 - [Project Motivation](#project-motivation)
 - [Workflow](#workflow)
-- [Spectrogram generation](#spec)
-- [Generating class labels](#classlabels)
+- [Requirements](#Requirements)
 ---
 
 <a id='project-motivation'></a>
@@ -33,19 +32,49 @@ Aside from the music industry, there could be significant benefits to be had wit
 ## Workflow of this Repository.
 
 This repository consists of a few notebooks (found in the [notebooks](/Notebooks) folder) and models (found in the [models](/Models) folder). 
+
+This is the general workflow of the project:
+
 ![](/Images/notebookworkflow.jpg)
-This is the general workflow of the project.
 
+The ```extractingfeatures.ipynb ``` notebook will generate and extract the features to be trained on the models.
 
+The ``` loadXandY.ipynb ``` notebook is the next notebook that will load the pickle files generated from  ```extractingfeatures.ipynb ``` and prepare the data for feeding into the convolutional model. 
 
+Next, the modelling notebooks (with names starting with "conv"  eg: ```convpool.ipynb```) are used to train the model and show the results from the training. There is also a notebook ```resnet-batch50.ipynb``` which utlises transfer learning by finetuning a pre-trained ResNet50 model.
 
+The test notebook ```checkingtestsetresnet.ipynb``` is also used to evaluate and perform analysis on the test set using the ResNet50 architecture. A simple content-based recommender was also created in this notebook that mapped the tracks which had the closest predictions to any given track.
 
+Further information and theory is shown inside the jupyter notebooks, so please feel free to hop inside to learn more!
 
+The notebooks should be viewed in this order:
 
-Upload github repo
-Flowchart
-Jupyter notebooks
-The first notebook you should look at is this, dipshit. Then this. Then this.
+* ```extractingfeatures.ipynb```
+* ```loadXandY.ipynb```
+* ```convpoolnoaug.ipynb```
+* ```convpoolwithaug.ipynb```
+* ```convconvpoolnoaug.ipynb```
+* ```convconvpoolwithaug.ipynb```
+* ```convconvpoolwithaug_80epochs.ipynb```
+* ```resnet-batch50.ipynb```
+* ```checkingtestsetresnet.ipynb```
+
+---
+
+<a id='Requirements'></a>
+## Requirements
+
+The general requirements are listed here. Typically, using ```pip``` would work well in installing these packages. Further details on the packages used are stated in the jupyter notebooks.
+```python``` packages:
+* ```PIL```
+* ```librosa```
+* ```keras```
+* ```tensorflow```
+* ```pandas```
+* ```numpy```
+* ```sklearn```
+
+---
 
 
 
