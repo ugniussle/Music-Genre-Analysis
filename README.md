@@ -2,7 +2,7 @@
 
 _Welcome to my project!_
 
-In this project, I will explore the ability of convolutional neural networks to extract features from spectrograms of songs. A model will then be trained on these features to perform classification of their respective genres. I will also play around with a system and 
+In this project, I will explore the ability of convolutional neural networks to extract features from spectrograms of songs. A model will then be trained on these features to perform classification of their respective genres. I will also play around with a system and perform some analysis on the Beatles Discography.
 
 ## Table of Contents
 ---
@@ -44,6 +44,8 @@ The ``` loadXandY.ipynb ``` notebook is the next notebook that will load the pic
 Next, the modelling notebooks (with names starting with "conv"  eg: ```convpool.ipynb```) are used to train the model and show the results from the training. There is also a notebook ```resnet-batch50.ipynb``` which utlises transfer learning by finetuning a pre-trained ResNet50 model.
 
 The test notebook ```checkingtestsetresnet.ipynb``` is also used to evaluate and perform analysis on the test set using the ResNet50 architecture. A simple content-based recommender was also created in this notebook that mapped the tracks which had the closest predictions to any given track.
+
+The notebook ```Beatles.ipynb``` explores the Beatles discography by running the audio files through the classifier. An exploration was also done by finding audio files with the closest link based on the probability distribution of the class predictions.
 
 Further information and theory is shown inside the jupyter notebooks, so please feel free to hop inside to learn more!
 
