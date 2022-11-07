@@ -92,7 +92,7 @@ class Convtrain(object):
                 #save the keras model
 		self.model.save(filepath+'model'+ '.h5')
 
-	def load(filepath):
+	def load(self,filepath):
 		self.model = load_model(filepath+'model'+ '.h5')
 
 

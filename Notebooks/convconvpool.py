@@ -1,8 +1,7 @@
 import numpy as np
 from keras.models import Sequential, Model, load_model
-from keras.layers import Layer, Dense, Activation, Flatten, Input, Add, Reshape, Dropout
+from keras.layers import Layer, Dense, Activation, Flatten, Input, Add, Reshape, Dropout, BatchNormalization
 from keras.layers.convolutional import Convolution2D, MaxPooling2D
-from keras.layers.normalization import BatchNormalization
 import pickle
 import keras.backend as K
 from keras import optimizers

@@ -1,17 +1,15 @@
 import numpy as np
 from keras.models import Sequential, Model, load_model
-from keras.layers import Layer, Dense, Activation, Flatten, Input, Add, Reshape, Dropout
+from keras.layers import Layer, Dense, Activation, Flatten, Input, Add, Reshape, Dropout, BatchNormalization
 from keras.layers.convolutional import Convolution2D, MaxPooling2D
-from keras.layers.normalization import BatchNormalization
 import pickle
 import keras.backend as K
 from keras import optimizers
-from keras.applications.resnet import ResNet50
 import time
 
 class Convtrain(object):
-	''' This class contains the convolutional model containing a vgg-like 
-	conv-conv-batchnorm-pool architecture to train a classifier on the spectrograms. '''
+	''' This class contains the convolutional model containing a vanilla conv-batchnorm-pool architecture to train
+	a classifier on the spectrograms. '''
 
 	def __init__(self, input_shape = (200,1024,3), optimizer = 'Adam',
 		loss='categorical_crossentropy', metrics=['accuracy']):
@@ -21,20 +19,24 @@ class Convtrain(object):
 		self.loss = loss
 		self.metrics = metrics
 
-
-
-
 		self.model = Sequential()
 
-		self.model.add(Convolution2D(32, kernel_size=2, strides=2, activation='relu', input_shape=self.input_shape))
-		self.model.add(Convolution2D(32, kernel_size=2, strides=2, activation='relu'))
+		self.model.add(Convolution2D(32, kernel_size=4, strides=2, activation='relu', input_shape=self.input_shape))
+		self.model.add(BatchNormalization())
+		self.model.add(MaxPooling2D(pool_size=(2, 2), strides=(2, 2)))
+
+		self.model.add(Convolution2D(32, kernel_size=3, strides=2, activation='relu'))
 		self.model.add(BatchNormalization())
 		self.model.add(MaxPooling2D(pool_size=(2, 2), strides=(2, 2)))
 
 		self.model.add(Convolution2D(64, kernel_size=2, strides=1, activation='relu'))
-		self.model.add(Convolution2D(64, kernel_size=2, strides=1, activation='relu'))
 		self.model.add(BatchNormalization())
 		self.model.add(MaxPooling2D(pool_size=(2, 2), strides=(2, 2)))
+
+
+		self.model.add(Convolution2D(128, kernel_size=2, strides=1, activation='relu'))
+		self.model.add(BatchNormalization())
+		self.model.add(MaxPooling2D(pool_size=(2,2), strides=(2,2)))
 
 
 		self.model.add(Dropout(0.5))
@@ -64,10 +66,10 @@ class Convtrain(object):
 		print("Training time taken: {}s".format(train_time))
 		return history
 	
-	def fit_generator(self, train_generator, validation_generator, epochs=20, steps_per_epoch=319):
+	def fit_generator(self, train_generator, validation_generator, epochs=20):
 		print("Training model:")
 		start_time = time.time()
-		history = self.model.fit_generator(train_generator, steps_per_epoch=steps_per_epoch, epochs=epochs, validation_data=validation_generator, validation_steps=40)
+		history = self.model.fit_generator(train_generator, steps_per_epoch=319, epochs=epochs, validation_data=validation_generator, validation_steps=40)
 		end_time = time.time()
 		train_time = end_time - start_time
 		print("Training finished!")
