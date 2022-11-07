@@ -1,2 +1,7 @@
 Notebooks/fma*/
 Notebooks/pickles/
+Notebooks/dataset/
+Notebooks/test/
+Notebooks/validation/
+*.pickle
+*.cpython*
